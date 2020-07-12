@@ -18,4 +18,24 @@ function onSignIn(googleUser){
       userEmail = null;
     });
   }
+
+  function getMessagesJSON(){
+    fetch('/data').then(response => response.json()).then((post)=>{
+      const volunteerListElement = document.getElementById('Name',);
+      console.log(post);
+      volunteerListElement.innerHTML = '';
+      post.forEach((post) =>{
+        volunteerListElement.appendChild(createListElement(post.Names));            
+      });
+    }); 
+}
+
+
+function createListElement(text){
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
+}
+
+
   
