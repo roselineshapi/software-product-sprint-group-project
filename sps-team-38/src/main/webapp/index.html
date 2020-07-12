@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <meta charset="UTF-8">
+        <title>Volunteer Request Form</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <meta name="google-signin-client_id" content="808152198654-dkol2ej7qm1dp21rn41p84sku3ajlpp0.apps.googleusercontent.com">
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+  </head>
+  <body>
+        <p>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <div class="data">
+            <p>Email Address</p>
+            <p id="email" class="alert alert-danger"></p>
+            <a href="#" onclick="signOut();">Sign out</a>
+            </div>
+        </p>
+        <h3>Request an Volunteer Here!</h3>
+        <br>
+        <form action="/data" method="POST">
+            <label for="name">Enter your name:</label>
+            <input type="text"  name="name" required/> <br>
+            <label for="intro">Give us a brief introduction to your volunteer needs for people to see:</label>
+            <textarea name="intro" required></textarea> <br>
+            <label for="spoken_lang">Enter the spoken language you would like the volunteer to speak:</label>
+            <input type="text"  list="spoken_lang" name="spoken_language" required/>
+            <datalist id="spoken_lang">
+                <! –– Please note that I just took the 5 most spoken languages in the world, as per https://www.fluentin3months.com/most-spoken-languages/ ––> 
+                <option>English</option>
+                <option>Mandarin Chinese</option>
+                <option>Hindustani</option>
+                <option>Spanish</option>
+                <option>Arabic</option>
+            </datalist> <br>
+            <label for="meet_link">Paste a link to a Google Meet chat for your interview:</label>
+            <input type="text" id="meet_link" name="communication_url"/ required> <br>
+
+            <label for="time_availability">Choose the times you would like a volunteer for:</label>
+            <p><small>Please enter all times in Coordinated Universal Time (UTC). See <a href="https://www.thetimezoneconverter.com/" target="_blank">this time zone converter</a> for reference.</small></p>
+            <div id="dynamic_input">
+                Entry 1</br><input type="datetime-local" id="time_availability" name="time_availability" required>
+            </div> 
+            <input type="button" value="Add Another Time" onClick="addInput('dynamic_input');"/> <br><br>
+
+            <input type="submit"/>
+        </form>
+        </div>
+        <div id="footer-placeholder"></div>
+    </body>
+</html>
