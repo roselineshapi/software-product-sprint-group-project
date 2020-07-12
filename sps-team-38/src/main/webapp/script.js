@@ -66,11 +66,6 @@ const list = document.querySelector('#form-list ul');
 
   // Load existing forms in database
 function loadForms(){
-    // fetch('/list-forms').then(response => response.json()).then((forms) => {
-    // forms.forEach((form) => {
-    //     formListElement.appendChild(renderForm(form));
-    // })
-    // });
     var forms = [];
     var form1 = new Form('Bryanna Home Shelter Volunteers', 30, 2010, 2020);
     var form2 = new Form('Edem Tutors Wanted', 2, 2015, 2020);
@@ -80,7 +75,7 @@ function loadForms(){
         renderForm(form);
     })
 }
-// ................remove this section, just for reference....................
+
 function renderForm(form){
     const forms = document.forms;
     const list = document.querySelector('#form-list ul');
