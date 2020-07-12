@@ -2,7 +2,6 @@
 var userEmail;
 
 function onSignIn(googleUser){
-    console.log("here");
     var profile = googleUser.getBasicProfile();
     console.log('Email: ' + profile.getEmail());
     $("#email").text(profile.getEmail());

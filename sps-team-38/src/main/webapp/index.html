@@ -18,7 +18,21 @@
             <a href="#" onclick="signOut();">Sign out</a>
             </div>
         </p>
-        <h3>Request a Volunteer Here!</h3>
+
+        <!-- Faceted search for posted volunteer forms -->
+        <form id="search-forms">
+            <input type="text" placeholder="Search volunteer forms..." />
+        </form>
+        <p>
+            <button onclick="loadForms()" id="refresh">Refresh</button>
+        </p>
+        <div id="form-list">
+            <ul>
+                <!--  form data displayed here -->
+            </ul>
+        </div>
+
+        <h3>Request an Volunteer Here!</h3>
         <br>
         <form action="/data" method="POST">
             <label for="name">Enter your (or your organization's, if you are representing one) name:</label>
