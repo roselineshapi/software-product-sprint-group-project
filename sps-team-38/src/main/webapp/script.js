@@ -21,11 +21,11 @@ function signOut() {
 
   function getMessagesJSON(){
     fetch('/data').then(response => response.json()).then((post)=>{
-      const volunteerListElement = document.getElementById('Name',);
+      const volunteerListElement = document.getElementById('info',);
       console.log(post);
       volunteerListElement.innerHTML = '';
       post.forEach((post) =>{
-        volunteerListElement.appendChild(createListElement(post.Names));            
+        volunteerListElement.appendChild(createListElement(post.information));            
       });
     }); 
 }
