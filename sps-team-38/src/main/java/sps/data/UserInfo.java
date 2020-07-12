@@ -15,7 +15,7 @@
 
 package com.google.sps.data;
 
-private class UserInfo {
+public class UserInfo {
     private final String name;
     private final long timestamp;
 
