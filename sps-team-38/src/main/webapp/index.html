@@ -18,7 +18,21 @@
             <a href="#" onclick="signOut();">Sign out</a>
             </div>
         </p>
-        <h3>Request a Volunteer Here!</h3>
+
+        <!-- Faceted search for posted volunteer forms -->
+        <form id="search-forms">
+            <input type="text" placeholder="Search volunteer forms..." />
+        </form>
+        <p>
+            <button onclick="loadForms()" id="refresh">Refresh</button>
+        </p>
+        <div id="form-list">
+            <ul>
+                <!--  form data displayed here -->
+            </ul>
+        </div>
+
+        <h3>Request an Volunteer Here!</h3>
         <br>
         <form action="/data" method="POST">
             <label for="name">Enter your (or your organization's, if you are representing one) name:</label>
@@ -28,7 +42,7 @@
             <label for="spoken_lang">Enter the spoken language you would like your volunteer(s) to speak:</label>
             <input type="text"  list="spoken_lang" name="spoken_language" required/>
             <datalist id="spoken_lang">
-                <! –– Please note that I just took the 5 most spoken languages in the world, as per https://www.fluentin3months.com/most-spoken-languages/ ––> 
+                <!-- Please note that I just took the 5 most spoken languages in the world, as per https://www.fluentin3months.com/most-spoken-languages/  -->
                 <option>English</option>
                 <option>Mandarin Chinese</option>
                 <option>Hindustani</option>
@@ -36,7 +50,7 @@
                 <option>Arabic</option>
             </datalist> <br>
             <label for="meet_link">Paste a link to a Google Meet session for your volunteer(s) to join:</label>
-            <input type="text" id="meet_link" name="communication_url"/ required> <br>
+            <input type="text" id="meet_link" name="communication_url" required> <br>
 
             <label for="time_availability">Choose the times you would like a volunteer for:</label>
             <p><small>Please enter all times in Coordinated Universal Time (UTC). See <a href="https://www.thetimezoneconverter.com/" target="_blank">this time zone converter</a> for reference.</small></p>
