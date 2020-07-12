@@ -20,7 +20,7 @@ private class UserInfo {
     private final long timestamp;
 
     public UserInfo(String name, long timestamp) {
-    this.name = name;
+        this.name = name;
         this.timestamp = timestamp;
     }
 }
