@@ -53,26 +53,44 @@ function addInput(divName){
     }
 }   
 
+//Form object to store locally, a form retrieved from database.
+function Form(title, capacity, postDate, expiryDate){
+    this.title = title;
+    this.capacity = capacity;
+    this.postDate = postDate;
+    this.expiryDate = expiryDate
+}
+
 const formListElement = document.getElementById('form-list');
 const list = document.querySelector('#form-list ul');
+
   // Load existing forms in database
 function loadForms(){
-    fetch('/list-forms').then(response => response.json()).then((forms) => {
+    // fetch('/list-forms').then(response => response.json()).then((forms) => {
+    // forms.forEach((form) => {
+    //     formListElement.appendChild(renderForm(form));
+    // })
+    // });
+    var forms = [];
+    var form1 = new Form('Bryanna Home Shelter Volunteers', 30, 2010, 2020);
+    var form2 = new Form('Edem Tutors Wanted', 2, 2015, 2020);
+    var form3 = new Form('Rebecca Baybysitting Volunteers', 5, 2020, 2021);
+    forms.push(form1);forms.push(form2);forms.push(form3);
     forms.forEach((form) => {
-        formListElement.appendChild(renderForm(form));
+        renderForm(form);
     })
-    });
 }
 // ................remove this section, just for reference....................
 function renderForm(form){
     const forms = document.forms;
+    const list = document.querySelector('#form-list ul');
     // create elements
     const li = document.createElement('li');
     const formName = document.createElement('span');
     const applyBtn = document.createElement('span');
 
     // add text content
-    formName.textContent = form.data().title;
+    formName.textContent = form.title;//would be changed later to form.data().title;
     applyBtn.textContent = 'apply';
 
     // add classes
@@ -85,9 +103,8 @@ function renderForm(form){
     list.appendChild(li);
     
     //TODO add feature to hide forms
-}
 
-// faceted search logic
+    // faceted search logic
 const searchBar = forms['search-forms'].querySelector('input');
 searchBar.addEventListener('keyup', (e) => {
   const term = e.target.value.toLowerCase();
@@ -101,3 +118,6 @@ searchBar.addEventListener('keyup', (e) => {
     }
   });
 });
+}
+
+
