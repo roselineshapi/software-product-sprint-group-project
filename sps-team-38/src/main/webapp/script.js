@@ -17,7 +17,27 @@ function signOut() {
       $("#email").remove();
       userEmail = null;
     });
+  }
+
+  function getMessagesJSON(){
+    fetch('/data').then(response => response.json()).then((post)=>{
+      const volunteerListElement = document.getElementById('Name',);
+      console.log(post);
+      volunteerListElement.innerHTML = '';
+      post.forEach((post) =>{
+        volunteerListElement.appendChild(createListElement(post.Names));            
+      });
+    }); 
 }
+
+
+function createListElement(text){
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
+}
+
+
 
 var counter = 1;
 var limit = 10;
@@ -33,3 +53,4 @@ function addInput(divName){
         counter++;
     }
 }   
+
