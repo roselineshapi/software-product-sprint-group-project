@@ -7,7 +7,11 @@ function onSignIn(googleUser){
     $("#email").text(profile.getEmail());
     userEmail = profile.getEmail();
     console.log(profile);
-  }
+    $("#loggedIn").show();
+    $("#loggedOut").hide();
+
+
+}
   
 function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
@@ -16,9 +20,11 @@ function signOut() {
       $("#email").remove();
       userEmail = null;
     });
-  }
+    $("#loggedOut").show();
+    $("#loggedIn").hide();
+}
 
-  function getMessagesJSON(){
+function getMessagesJSON(){
     fetch('/data').then(response => response.json()).then((post)=>{
       const volunteerListElement = document.getElementById('info',);
       console.log(post);
