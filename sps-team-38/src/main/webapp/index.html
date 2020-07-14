@@ -2,66 +2,44 @@
 <html>
   <head>
         <meta charset="UTF-8">
-        <title>Volunteer Request Form</title>
+        <title>Home Page</title>
         <link rel="stylesheet" href="style.css">
-        <script src="script.js"></script>
+       
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <meta name="google-signin-client_id" content="808152198654-dkol2ej7qm1dp21rn41p84sku3ajlpp0.apps.googleusercontent.com">
         <script src="https://apis.google.com/js/platform.js" async defer></script>
   </head>
   <body>
-        <p>
-            <div class="g-signin2" data-onsuccess="onSignIn"></div>
-            <div class="data">
-            <p>Email Address</p>
-            <p id="email" class="alert alert-danger"></p>
+        <div id="loggedOut" style="display: none;">
+            <h1 style = "text-align: center">Welcome to <span>"Insert Web App Name Here"</span></h1>
+            <p>"Insert Web App Name Here" is a service that connects those in need of assistance together with remote volunteers.</p>
+        
+            <p>
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                <div class="data">
+                <p>Email Address</p>
+                <p id="email" class="alert alert-danger"></p>
+                </div>
+            </p>
+            
+            <p>Please note: You can only log in with a Google account.</p>
+        </div>
+        
+        <div id="loggedIn" style="display: none;">
             <a href="#" onclick="signOut();">Sign out</a>
+            <!-- Faceted search for posted volunteer forms -->
+            <form id="search-forms">
+                <input type="text" placeholder="Search volunteer forms..." />
+            </form>
+            <p>
+                <button onclick="loadForms()" id="refresh">Refresh</button>
+            </p>
+            <div id="form-list">
+                <ul>
+                    <!--  form data displayed here -->
+                </ul>
             </div>
-        </p>
-
-        <!-- Faceted search for posted volunteer forms -->
-        <form id="search-forms">
-            <input type="text" placeholder="Search volunteer forms..." />
-        </form>
-        <p>
-            <button onclick="loadForms()" id="refresh">Refresh</button>
-        </p>
-        <div id="form-list">
-            <ul>
-                <!--  form data displayed here -->
-            </ul>
         </div>
-
-        <h3>Request an Volunteer Here!</h3>
-        <br>
-        <form action="/data" method="POST">
-            <label for="name">Enter your (or your organization's, if you are representing one) name:</label>
-            <input type="text"  name="name" required/> <br>
-            <label for="intro">Give us a brief introduction to your volunteer needs for potential volunteers to see:</label>
-            <textarea name="intro" required></textarea> <br>
-            <label for="spoken_lang">Enter the spoken language you would like your volunteer(s) to speak:</label>
-            <input type="text"  list="spoken_lang" name="spoken_language" required/>
-            <datalist id="spoken_lang">
-                <!-- Please note that I just took the 5 most spoken languages in the world, as per https://www.fluentin3months.com/most-spoken-languages/  -->
-                <option>English</option>
-                <option>Mandarin Chinese</option>
-                <option>Hindustani</option>
-                <option>Spanish</option>
-                <option>Arabic</option>
-            </datalist> <br>
-            <label for="meet_link">Paste a link to a Google Meet session for your volunteer(s) to join:</label>
-            <input type="text" id="meet_link" name="communication_url" required> <br>
-
-            <label for="time_availability">Choose the times you would like a volunteer for:</label>
-            <p><small>Please enter all times in Coordinated Universal Time (UTC). See <a href="https://www.thetimezoneconverter.com/" target="_blank">this time zone converter</a> for reference.</small></p>
-            <div id="dynamic_input">
-                Entry 1</br><input type="datetime-local" id="time_availability" name="time_availability" required>
-            </div> 
-            <input type="button" value="Add Another Time" onClick="addInput('dynamic_input');"/> <br><br>
-
-            <input type="submit"/>
-        </form>
-        </div>
-        <div id="footer-placeholder"></div>
+        <script src="script.js"></script>
     </body>
 </html>
