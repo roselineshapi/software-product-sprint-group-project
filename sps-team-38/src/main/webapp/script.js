@@ -70,16 +70,15 @@ function Form(title, capacity, postDate, expiryDate){
 const formListElement = document.getElementById('form-list');
 const list = document.querySelector('#form-list ul');
 
+var allforms =[];
   // Load existing forms in database
 function loadForms(){
-    var forms = [];
-    var form1 = new Form('Bryanna Home Shelter Volunteers', 30, 2010, 2020);
-    var form2 = new Form('Edem Tutors Wanted', 2, 2015, 2020);
-    var form3 = new Form('Rebecca Baybysitting Volunteers', 5, 2020, 2021);
-    forms.push(form1);forms.push(form2);forms.push(form3);
+    fetch('/list-forms').then(response => response.json()).then((forms) => {
     forms.forEach((form) => {
+        allforms.push(form);
         renderForm(form);
     })
+    });
 }
 
 function renderForm(form){
@@ -90,7 +89,7 @@ function renderForm(form){
     const acceptBtn = document.createElement('span');
 
     // add text content
-    formName.textContent = form.title;//would be changed later to form.data().title;
+    formName.textContent = form.data().title;//would be changed later to form.data().title;
     acceptBtn.textContent = 'accept';
 
     // add classes
@@ -119,18 +118,29 @@ searchBar.addEventListener('keyup', (e) => {
 });
 }
 
+//once the accept span is clicked, get the form title and send an accept request.
 list.addEventListener('click', (e) => {
     if(e.target.className == 'accept'){
       const li = e.target.parentElement; 
         var formTitle = String(li.textContent).replace('accept','');
         console.log(formTitle);
-        acceptForm(formTitle);
+        var ownerEmail = getOwner(formTitle);
+        acceptForm(formTitle, ownerEmail);
     }
   });
+
+function getOwner(formTitle){
+    for(form in allforms){
+        if(form.title.equals(formTitle)){
+            return form.ownerEmail;
+        }
+    }
+}
 
 function acceptForm(formTitle){
     var data = {
         title: formTitle,
+        ownerEmail: ownerEmail,
         email: userEmail
     }
     $.ajax({
