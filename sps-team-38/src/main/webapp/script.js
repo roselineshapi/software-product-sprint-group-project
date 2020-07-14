@@ -84,26 +84,24 @@ function loadForms(){
 
 function renderForm(form){
     const forms = document.forms;
-    const list = document.querySelector('#form-list ul');
     // create elements
     const li = document.createElement('li');
     const formName = document.createElement('span');
-    const applyBtn = document.createElement('span');
+    const acceptBtn = document.createElement('span');
 
     // add text content
     formName.textContent = form.title;//would be changed later to form.data().title;
-    applyBtn.textContent = 'apply';
+    acceptBtn.textContent = 'accept';
 
     // add classes
     formName.classList.add('name');
-    applyBtn.classList.add('apply');
+    acceptBtn.classList.add('accept');
 
     // append to DOM
     li.appendChild(formName);
-    li.appendChild(applyBtn);
+    li.appendChild(acceptBtn);
     list.appendChild(li);
-    
-    //TODO add feature to hide forms
+
 
     // faceted search logic
 const searchBar = forms['search-forms'].querySelector('input');
@@ -120,5 +118,33 @@ searchBar.addEventListener('keyup', (e) => {
   });
 });
 }
+
+list.addEventListener('click', (e) => {
+    if(e.target.className == 'accept'){
+      const li = e.target.parentElement; 
+        var formTitle = String(li.textContent).replace('accept','');
+        console.log(formTitle);
+        acceptForm(formTitle);
+    }
+  });
+
+function acceptForm(formTitle){
+    var data = {
+        title: formTitle,
+        email: userEmail
+    }
+    $.ajax({
+        type: "POST",
+        url: "accept-form",
+        data: data,
+        success: function(response){
+              alert( "Success. An email has been sent.");
+        },
+        error: function (e) {
+            console.log("ERROR : ", e);
+        }
+      });
+}
+
 
 
