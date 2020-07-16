@@ -137,7 +137,7 @@ function getOwner(formTitle){
     }
 }
 
-function acceptForm(formTitle){
+function acceptForm(formTitle, ownerEmail){
     var data = {
         title: formTitle,
         ownerEmail: ownerEmail,
