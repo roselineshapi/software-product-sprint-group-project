@@ -70,10 +70,21 @@ function Form(title, capacity, postDate, expiryDate){
 const formListElement = document.getElementById('form-list');
 const list = document.querySelector('#form-list ul');
 
-var allforms =[];
-  // Load existing forms in database
-function loadForms(){
-    fetch('/list-forms').then(response => response.json()).then((forms) => {
+var allOrgforms =[];
+  // Load all forms for signed in org in database.
+function loadOrgForms(){
+    fetch('/list-org-forms').then(response => response.json()).then((forms) => {
+    forms.forEach((form) => {
+        allforms.push(form);
+        renderForm(form);
+    })
+    });
+}
+
+var allforms = [];
+  // Load all forms in database for volunteers.
+  function loadVolunteerForms(){
+    fetch('/list-all-forms').then(response => response.json()).then((forms) => {
     forms.forEach((form) => {
         allforms.push(form);
         renderForm(form);
@@ -89,7 +100,7 @@ function renderForm(form){
     const acceptBtn = document.createElement('span');
 
     // add text content
-    formName.textContent = form.data().title;//would be changed later to form.data().title;
+    formName.textContent = form.data().title;
     acceptBtn.textContent = 'accept';
 
     // add classes
@@ -158,10 +169,29 @@ function submitForm(){
   data.expiryDate = document.getElementById("expiryDate").value;
   data.sessionUrl = document.getElementById("sessionUrl").value;
   console.log(data);
-  $.post("/new-form", data).then(response => {
-    console.log("SUCCESS: ", response);
-  });
-  return false;
+  var TrueStatus = ensureUniqueTitle(data.title);
+
+  if(TrueStatus){
+    $.post("/new-form", data).then(response => {
+      console.log("SUCCESS: ", response);
+    });
+    return false;
+  }
+}
+
+function ensureUniqueTitle(newTitle){
+  var allforms = [];
+  fetch('/list-all-forms').then(response => response.json()).then((forms) => {
+    forms.forEach((form) => {
+        allforms.push(form);
+    })
+    });
+    for (form in allforms){
+      if(form.title.equals(newTitle)){
+        return false;
+      }
+    }
+    return true;
 }
 
 
