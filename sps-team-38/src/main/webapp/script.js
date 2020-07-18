@@ -7,8 +7,8 @@ function onSignIn(googleUser){
     $("#email").text(profile.getEmail());
     userEmail = profile.getEmail();
     console.log(profile);
-    // $("#loggedIn").show();
-    // $("#loggedOut").hide();
+    $("#loggedIn").show();
+    $("#loggedOut").hide();
 
 
 }
@@ -20,8 +20,8 @@ function signOut() {
       $("#email").remove();
       userEmail = null;
     });
-    // $("#loggedOut").show();
-    // $("#loggedIn").hide();
+    $("#loggedOut").show();
+    $("#loggedIn").hide();
 }
 
 function getMessagesJSON(){

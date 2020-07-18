@@ -17,6 +17,7 @@ public final class Form {
     this.id = id;
     this.timestamp = timestamp;
     this.title = title;
+    this.ownerName = ownerName;
     this.ownerEmail = ownerEmail;
     this.description = description;
     this.sessionUrl = sessionUrl;
