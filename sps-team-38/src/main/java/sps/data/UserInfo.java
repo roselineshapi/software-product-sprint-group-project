@@ -18,9 +18,11 @@ package com.google.sps.data;
 public class UserInfo {
     private final String name;
     private final long timestamp;
+    private final String description;
 
-    public UserInfo(String name, long timestamp) {
+    public UserInfo(String name, long timestamp, String description) {
         this.name = name;
         this.timestamp = timestamp;
+        this.description = description;
     }
 }
