@@ -152,7 +152,12 @@ function submitForm(){
   var data = { };
   data.title = document.getElementById("title").value;
   data.ownerName = document.getElementById("ownerName").value;
+  data.ownerEmail = document.getElementById("ownerEmail").value;
   data.description = document.getElementById("description").value;
+  data.capacity = document.getElementById("capacity").value;
+  data.expiryDate = document.getElementById("expiryDate").value;
+  data.sessionUrl = document.getElementById("sessionUrl").value;
+  console.log(data);
   $.post("/new-form", data).then(response => {
     console.log("SUCCESS: ", response);
   });
