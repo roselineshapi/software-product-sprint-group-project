@@ -137,24 +137,31 @@ function getOwner(formTitle){
     }
 }
 
-function acceptForm(formTitle){
-    var data = {
-        title: formTitle,
-        ownerEmail: ownerEmail,
-        email: userEmail
-    }
-    $.ajax({
-        type: "POST",
-        url: "accept-form",
-        data: data,
-        success: function(response){
-              alert( "Success. An email has been sent.");
-        },
-        error: function (e) {
-            console.log("ERROR : ", e);
-        }
-      });
+function acceptForm(formTitle, ownerEmail){
+  var data = {};
+  data.title = formTitle;
+  data.ownerEmail = ownerEmail;
+  data.email = userEmail;
+  $.post("/accept-form", data).then(response => {
+    console.log("SUCCESS: ", response);
+  });
+  return false;
 }
 
+function submitForm(){
+  var data = { };
+  data.title = document.getElementById("title").value;
+  data.ownerName = document.getElementById("ownerName").value;
+  data.ownerEmail = document.getElementById("ownerEmail").value;
+  data.description = document.getElementById("description").value;
+  data.capacity = document.getElementById("capacity").value;
+  data.expiryDate = document.getElementById("expiryDate").value;
+  data.sessionUrl = document.getElementById("sessionUrl").value;
+  console.log(data);
+  $.post("/new-form", data).then(response => {
+    console.log("SUCCESS: ", response);
+  });
+  return false;
+}
 
 

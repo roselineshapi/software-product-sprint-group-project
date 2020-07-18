@@ -22,6 +22,7 @@ public class GetForm extends HttpServlet {
     private long id;
     private long timestamp;
     private String title;
+    private String ownerName;
     private String ownerEmail;
     private String description;
     private String sessionUrl;
@@ -40,16 +41,17 @@ public class GetForm extends HttpServlet {
         String title = (String) entity.getProperty("title"); 
         if(title.equals(formTitle)){
             id = entity.getKey().getId();
+            timestamp = (long) entity.getProperty("timestamp");
             title = (String) entity.getProperty("title");
+            ownerName = (String) entity.getProperty("ownerName");
             ownerEmail = (String) entity.getProperty("ownerEmail");
             description = (String)entity.getProperty("description");
-            sessionUrl = (String)entity.getProperty("sessionUrl");
-            expiryDate = (String)entity.getProperty("expiryDate");
             capacity = (Integer)entity.getProperty("capacity");
-            timestamp = (long) entity.getProperty("timestamp");
+            expiryDate = (String)entity.getProperty("expiryDate");
+            sessionUrl = (String)entity.getProperty("sessionUrl");
         }
     }
-    Form form = new Form(id, timestamp, title, ownerEmail, description, sessionUrl, expiryDate, capacity);
+    Form form = new Form(id, timestamp, title, ownerName, ownerEmail, description, capacity, expiryDate, sessionUrl);
     Gson gson = new Gson();
 
     response.setContentType("application/json;");
