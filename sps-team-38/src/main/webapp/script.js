@@ -7,8 +7,8 @@ function onSignIn(googleUser){
     $("#email").text(profile.getEmail());
     userEmail = profile.getEmail();
     console.log(profile);
-    $("#loggedIn").show();
-    $("#loggedOut").hide();
+    // $("#loggedIn").show();
+    // $("#loggedOut").hide();
 
 
 }
@@ -20,8 +20,8 @@ function signOut() {
       $("#email").remove();
       userEmail = null;
     });
-    $("#loggedOut").show();
-    $("#loggedIn").hide();
+    // $("#loggedOut").show();
+    // $("#loggedIn").hide();
 }
 
 function getMessagesJSON(){
@@ -138,23 +138,25 @@ function getOwner(formTitle){
 }
 
 function acceptForm(formTitle, ownerEmail){
-    var data = {
-        title: formTitle,
-        ownerEmail: ownerEmail,
-        email: userEmail
-    }
-    $.ajax({
-        type: "POST",
-        url: "accept-form",
-        data: data,
-        success: function(response){
-              alert( "Success. An email has been sent.");
-        },
-        error: function (e) {
-            console.log("ERROR : ", e);
-        }
-      });
+  var data = {};
+  data.title = formTitle;
+  data.ownerEmail = ownerEmail;
+  data.email = userEmail;
+  $.post("/accept-form", data).then(response => {
+    console.log("SUCCESS: ", response);
+  });
+  return false;
 }
 
+function submitForm(){
+  var data = { };
+  data.title = document.getElementById("title").value;
+  data.ownerName = document.getElementById("ownerName").value;
+  data.description = document.getElementById("description").value;
+  $.post("/new-form", data).then(response => {
+    console.log("SUCCESS: ", response);
+  });
+  return false;
+}
 
 
