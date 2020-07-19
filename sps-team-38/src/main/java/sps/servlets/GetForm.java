@@ -27,7 +27,7 @@ public class GetForm extends HttpServlet {
     private String description;
     private String sessionUrl;
     private String expiryDate;
-    private int capacity;
+    private String capacity;
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -46,12 +46,12 @@ public class GetForm extends HttpServlet {
             ownerName = (String) entity.getProperty("ownerName");
             ownerEmail = (String) entity.getProperty("ownerEmail");
             description = (String)entity.getProperty("description");
-            capacity = (Integer)entity.getProperty("capacity");
+            capacity = entity.getProperty("capacity").toString();
             expiryDate = (String)entity.getProperty("expiryDate");
             sessionUrl = (String)entity.getProperty("sessionUrl");
         }
     }
-    Form form = new Form(id, timestamp, title, ownerName, ownerEmail, description, capacity, expiryDate, sessionUrl);
+    Form form = new Form(id, timestamp, title, ownerName, ownerEmail, description, Integer.valueOf(capacity), expiryDate, sessionUrl);
     Gson gson = new Gson();
 
     response.setContentType("application/json;");
