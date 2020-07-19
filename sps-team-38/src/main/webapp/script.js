@@ -84,14 +84,21 @@ function loadOrgForms(){
 var allforms = [];
   // Load all forms in database for volunteers.
   function loadVolunteerForms(){
-      console.log('here1');
-    fetch('/list-all-forms').then(response => response.json()).then((forms) => {
+    // fetch('/list-all-forms').then(response => response.json()).then((forms) => {
+    // forms.forEach((form) => {
+    //     allforms.push(form);
+    //     renderForm(form);
+    // })
+    // });
+    // console.log(allforms);
+    var forms = [];
+    var form1 = new Form('Bryanna Home Shelter Volunteers', 30, 2010, 2020);
+    var form2 = new Form('Edem Tutors Wanted', 2, 2015, 2020);
+    var form3 = new Form('Rebecca Baybysitting Volunteers', 5, 2020, 2021);
+    forms.push(form1);forms.push(form2);forms.push(form3);
     forms.forEach((form) => {
-        allforms.push(form);
         renderForm(form);
     })
-    });
-    console.log(allforms);
 }
 
 function renderForm(form){
