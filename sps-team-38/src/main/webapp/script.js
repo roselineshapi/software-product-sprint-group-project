@@ -73,12 +73,18 @@ const list = document.querySelector('#form-list ul');
 var allOrgforms =[];
   // Load all forms for signed in org in database.
 function loadOrgForms(){
-    fetch('/list-org-forms').then(response => response.json()).then((forms) => {
-    forms.forEach((form) => {
-        allforms.push(form);
-        renderForm(form);
-    })
+    // fetch('/list-org-forms').then(response => response.json()).then((forms) => {
+    // forms.forEach((form) => {
+    //     allforms.push(form);
+    //     renderForm(form);
+    // })
+    // });
+    var data = {};
+    data.email = userEmail;
+    $.post("/list-org-forms", data).then(response => {
+      console.log("SUCCESS: ", response);
     });
+    return false;
 }
 
 var allforms = [];
