@@ -26,7 +26,7 @@ import javax.mail.internet.MimeMessage;
 
 @WebServlet("/accept-form")
 @SuppressWarnings("serial")
-public class MatchServlet extends HttpServlet {
+public class AcceptFormServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
