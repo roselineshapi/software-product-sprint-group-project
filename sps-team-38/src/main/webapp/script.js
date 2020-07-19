@@ -73,16 +73,14 @@ const list = document.querySelector('#form-list ul');
 var allOrgforms =[];
   // Load all forms for signed in org in database.
 function loadOrgForms(){
-    // fetch('/list-org-forms').then(response => response.json()).then((forms) => {
-    // forms.forEach((form) => {
-    //     allforms.push(form);
-    //     renderForm(form);
-    // })
-    // });
     var data = {};
     data.email = userEmail;
-    $.post("/list-org-forms", data).then(response => {
-      console.log("SUCCESS: ", response);
+    console.log(data.email);
+    $.get("/list-org-forms", data).then(response => {
+        response.forEach((form) => {
+            allOrgforms.push(form);
+            renderForm(form);
+        })
     });
     return false;
 }
@@ -90,21 +88,12 @@ function loadOrgForms(){
 var allforms = [];
   // Load all forms in database for volunteers.
   function loadVolunteerForms(){
-    // fetch('/list-all-forms').then(response => response.json()).then((forms) => {
-    // forms.forEach((form) => {
-    //     allforms.push(form);
-    //     renderForm(form);
-    // })
-    // });
-    // console.log(allforms);
-    var forms = [];
-    var form1 = new Form('Bryanna Home Shelter Volunteers', 30, 2010, 2020);
-    var form2 = new Form('Edem Tutors Wanted', 2, 2015, 2020);
-    var form3 = new Form('Rebecca Baybysitting Volunteers', 5, 2020, 2021);
-    forms.push(form1);forms.push(form2);forms.push(form3);
+    fetch('/list-all-forms').then(response => response.json()).then((forms) => {
     forms.forEach((form) => {
+        allforms.push(form);
         renderForm(form);
     })
+    });
 }
 
 function renderForm(form){
