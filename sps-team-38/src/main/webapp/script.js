@@ -7,8 +7,8 @@ function onSignIn(googleUser){
     $("#email").text(profile.getEmail());
     userEmail = profile.getEmail();
     console.log(profile);
-    $("#loggedIn").show();
-    $("#loggedOut").hide();
+    // $("#loggedIn").show();
+    // $("#loggedOut").hide();
 
 
 }
@@ -20,8 +20,8 @@ function signOut() {
       $("#email").remove();
       userEmail = null;
     });
-    $("#loggedOut").show();
-    $("#loggedIn").hide();
+    // $("#loggedOut").show();
+    // $("#loggedIn").hide();
 }
 
 function getMessagesJSON(){
@@ -84,12 +84,14 @@ function loadOrgForms(){
 var allforms = [];
   // Load all forms in database for volunteers.
   function loadVolunteerForms(){
+      console.log('here1');
     fetch('/list-all-forms').then(response => response.json()).then((forms) => {
     forms.forEach((form) => {
         allforms.push(form);
         renderForm(form);
     })
     });
+    console.log(allforms);
 }
 
 function renderForm(form){
@@ -100,7 +102,7 @@ function renderForm(form){
     const acceptBtn = document.createElement('span');
 
     // add text content
-    formName.textContent = form.data().title;
+    formName.textContent = form.title;
     acceptBtn.textContent = 'accept';
 
     // add classes
