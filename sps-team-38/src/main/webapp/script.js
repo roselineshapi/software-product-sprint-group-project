@@ -171,29 +171,9 @@ function submitForm(){
   data.expiryDate = document.getElementById("expiryDate").value;
   data.sessionUrl = document.getElementById("sessionUrl").value;
   console.log(data);
-  var TrueStatus = ensureUniqueTitle(data.title);
-
-  if(TrueStatus){
     $.post("/new-form", data).then(response => {
       console.log("SUCCESS: ", response);
     });
-    return false;
-  }
-}
-
-function ensureUniqueTitle(newTitle){
-  var allforms = [];
-  fetch('/list-all-forms').then(response => response.json()).then((forms) => {
-    forms.forEach((form) => {
-        allforms.push(form);
-    })
-    });
-    for (form in allforms){
-      if(form.title.equals(newTitle)){
-        return false;
-      }
-    }
-    return true;
 }
 
 
