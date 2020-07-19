@@ -5,13 +5,12 @@ import com.google.appengine.api.datastore.*;
 import com.google.appengine.api.datastore.Query.*;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
-import java.io.IOException;
+import java.io.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
-import com.google.sps.models.InterviewRequest;
 // [START simple_email_includes]
 import java.util.Properties;
 import javax.mail.Message;
@@ -55,7 +54,7 @@ public class AcceptFormServlet extends HttpServlet {
       msg.addRecipient(Message.RecipientType.TO, new InternetAddress(ownerEmail, "Volunteer Requester"));
       msg.setSubject("A Volunteer Has Accepted Your Listing!");
       msg.setReplyTo(replyAddress);
-      msg.setText("Congrats! A volunteer has accepted your listing titled, " title + "." + "\n Please refer to your listing details on the site to review event details.");
+      msg.setText("Congrats! A volunteer has accepted your listing titled, " + title + "." + "\n Please refer to your listing details on the site to review event details.");
       Transport.send(msg);
       msg2.setFrom(new InternetAddress("matches@volunteer-web-app.appspotmail.com", "Volunteer Web App Team"));
       msg2.addRecipient(Message.RecipientType.TO, new InternetAddress(volunteerEmail, "Volunteer"));
