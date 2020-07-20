@@ -7,10 +7,7 @@ function onSignIn(googleUser){
     $("#email").text(profile.getEmail());
     userEmail = profile.getEmail();
     console.log(profile);
-    // $("#loggedIn").show();
-    // $("#loggedOut").hide();
-
-
+    window.location.href = "choices.html";
 }
   
 function signOut() {
@@ -20,8 +17,8 @@ function signOut() {
       $("#email").remove();
       userEmail = null;
     });
-    // $("#loggedOut").show();
-    // $("#loggedIn").hide();
+   window.location.href = "index.html";
+    
 }
 
 function getMessagesJSON(){
@@ -41,8 +38,6 @@ function createListElement(text){
   liElement.innerText = text;
   return liElement;
 }
-
-
 
 var counter = 1;
 var limit = 10;
@@ -134,15 +129,15 @@ searchBar.addEventListener('keyup', (e) => {
 }
 
 //once the accept span is clicked, get the form title and send an accept request.
-list.addEventListener('click', (e) => {
-    if(e.target.className == 'accept'){
-      const li = e.target.parentElement; 
-        var formTitle = String(li.textContent).replace('accept','');
-        console.log(formTitle);
-        var ownerEmail = getOwner(formTitle);
-        acceptForm(formTitle, ownerEmail);
-    }
-  });
+//list.addEventListener('click', (e) => {
+   // if(e.target.className == 'accept'){
+    //  const li = e.target.parentElement; 
+    //    var formTitle = String(li.textContent).replace('accept','');
+    //    console.log(formTitle);
+   //     var ownerEmail = getOwner(formTitle);
+   //     acceptForm(formTitle, ownerEmail);
+  //  }
+ // });
 
 function getOwner(formTitle){
     for(form in allforms){

@@ -2,7 +2,7 @@
 <html>
   <head>
         <meta charset="UTF-8">
-        <title>Home Page</title>
+        <title>Choices Page</title>
         <link rel="stylesheet" href="style.css">
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -13,31 +13,33 @@
         <script src="https://apis.google.com/js/platform.js" async defer></script>
   </head>
   <body>
-        <header class="header">
+        <header cleass="header">
             <nav class="navbar navbar-style">
                 <div class="container">
                     <div class="navbar-header">
                         <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#micon">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand brand" id="logo">Volunteer Web App</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="micon">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a onclick="signOut();">Sign out</a></li>
+                        </ul>
                     </div>
                 </div>
             </nav>
         </header>
-        
-        <h1 style = "text-align: center">Welcome to <span>Volunteer Web App</span></h1>
-        <p>Volunteer Web App is a service that connects those in need of assistance together with remote volunteers.</p>
-        <p>
-            <div class="g-signin2" data-onsuccess="onSignIn"></div>
-            <div class="data">
-                <p>Email Address</p>
-                <p id="email" class="alert alert-danger"></p>
-            </div>
-        </p>  
-        <p>Please note: You can only log in with a Google account.</p>
+        <div class="flex">
+            <form action="RequesterHomePage.html" class="flex-item">
+                <button class="button">Volunteer Requester</button>
+            </form>
+            <form action="VolunteerHomePage.html" class="flex-item">
+                <button class="button">Volunteer</button>
+            </form>
+        </div>
         <script src="script.js"></script>
-  </body>
+    </body>
 </html>
