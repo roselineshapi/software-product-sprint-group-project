@@ -16,9 +16,7 @@ function signOut() {
       console.log('User signed out.');
       $("#email").remove();
       userEmail = null;
-    });
-   window.location.href = "index.html";
-    
+    }); 
 }
 
 function getMessagesJSON(){
@@ -171,6 +169,9 @@ function submitForm(){
     $.post("/new-form", data).then(response => {
       console.log("SUCCESS: ", response);
     });
+    window.location.href = "RequesterHomePage.html";
+
+
 }
 
 
