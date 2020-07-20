@@ -12,7 +12,7 @@
         <meta name="google-signin-client_id" content="808152198654-dkol2ej7qm1dp21rn41p84sku3ajlpp0.apps.googleusercontent.com">
         <script src="https://apis.google.com/js/platform.js" async defer></script>
   </head>
-  <body onload="loadOrgForms()">
+  <body>
         <header cleass="header">
             <nav class="navbar navbar-style">
                 <div class="container">
@@ -41,6 +41,12 @@
                         <input type="text" placeholder="Search for your volunteer request forms..." />
                     </form>
                 </div>
+                <li>
+                    <label> Enter your email </label>
+                    <p>
+                        <input type="text" id="email" required>
+                    </p>
+                </li>
                 <p>
                     <button onclick="loadOrgForms()" id="refresh">Refresh</button>
                 </p>
