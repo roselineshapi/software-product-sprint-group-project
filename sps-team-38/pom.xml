@@ -49,7 +49,7 @@
         <version>2.2.0</version>
         <configuration>
           <!-- TODO: set project ID. -->
-          <deploy.projectId>PROJECT_ID_HERE</deploy.projectId>
+          <deploy.projectId>summer20-sps-38</deploy.projectId>
           <deploy.version>1</deploy.version>
         </configuration>
       </plugin>

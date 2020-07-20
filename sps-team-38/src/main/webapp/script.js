@@ -11,12 +11,14 @@ function onSignIn(googleUser){
 }
   
 function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
-      $("#email").remove();
-      userEmail = null;
-    }); 
+  // console.log(googleUser.getBasicProfile().getEmail());
+  //   var auth2 = gapi.auth2.getAuthInstance();
+  //   auth2.signOut().then(function () {
+  //     console.log('User signed out.');
+  //     $("#email").remove();
+  //     userEmail = null;
+  //   });
+  window.location.href = "choices.html"; //for now
 }
 
 function getMessagesJSON(){
@@ -67,7 +69,7 @@ var allOrgforms =[];
   // Load all forms for signed in org in database.
 function loadOrgForms(){
     var data = {};
-    data.email = userEmail;
+    data.email = document.querySelector("#email").value;
     console.log(data.email);
     $.get("/list-org-forms", data).then(response => {
         response.forEach((form) => {
@@ -127,15 +129,16 @@ searchBar.addEventListener('keyup', (e) => {
 }
 
 //once the accept span is clicked, get the form title and send an accept request.
-//list.addEventListener('click', (e) => {
-   // if(e.target.className == 'accept'){
-    //  const li = e.target.parentElement; 
-    //    var formTitle = String(li.textContent).replace('accept','');
-    //    console.log(formTitle);
-   //     var ownerEmail = getOwner(formTitle);
-   //     acceptForm(formTitle, ownerEmail);
-  //  }
- // });
+list.addEventListener('click', (e) => {
+   if(e.target.className == 'accept'){
+     const li = e.target.parentElement; 
+       var formTitle = String(li.textContent).replace('accept','');
+       console.log(formTitle);
+       alert("An email will be sent to you shortly");
+      //  var ownerEmail = getOwner(formTitle);
+      //  acceptForm(formTitle, ownerEmail);
+   }
+ });
 
 function getOwner(formTitle){
     for(form in allforms){
