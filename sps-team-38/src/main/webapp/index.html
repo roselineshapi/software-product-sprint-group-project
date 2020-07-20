@@ -13,44 +13,16 @@
         <script src="https://apis.google.com/js/platform.js" async defer></script>
   </head>
   <body>
-        <!-- <div id="loggedOut" style="display: none;"> -->
-            <div id="loggedOut"></div>
-            <h1 style = "text-align: center">Welcome to <span>"Insert Web App Name Here"</span></h1>
-            <p>"Insert Web App Name Here" is a service that connects those in need of assistance together with remote volunteers.</p>
-        
-            <p>
-                <div class="g-signin2" data-onsuccess="onSignIn"></div>
-                <div class="data">
+        <h1 style = "text-align: center">Welcome to <span>Volunteer Web App</span></h1>
+        <p>Volunteer Web App is a service that connects those in need of assistance together with remote volunteers.</p>
+        <p>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <div class="data">
                 <p>Email Address</p>
                 <p id="email" class="alert alert-danger"></p>
-                </div>
-            </p>
-            
-            <p>Please note: You can only log in with a Google account.</p>
-        </div>
-        
-       
-        <!-- <div id="loggedIn" style="display: none;"> -->
-            <a href="#" onclick="signOut();">Sign out</a>
-            <!-- Faceted search for posted volunteer forms -->
-        <div id="wrapper">
-            <header>
-                <div id="page-banner">
-                    <form id="search-forms">
-                        <input type="text" placeholder="Search volunteer forms..." />
-                    </form>
-                </div>
-                <p>
-                    <button onclick="loadOrgForms()" id="refresh">Refresh</button>
-                </p>
-            </header>
-            <div id="form-list">
-                <ul>
-                    <!--  form data displayed here -->
-                </ul>
             </div>
-        </div>
-        <!-- </div> -->
+        </p>  
+        <p>Please note: You can only log in with a Google account.</p>
         <script src="script.js"></script>
-    </body>
+  </body>
 </html>
